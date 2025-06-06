@@ -49,6 +49,12 @@ export default function TextForm(props) {
         props.showAlert("Extra Spaces Removed", "success"); //Showing the alert
     }
 
+    const convertToPara = () => {
+        let newText = text.replaceAll('\n', ' '); 
+        setText(newText); 
+        props.showAlert("Converted Into Paragraph", "success"); 
+    }
+
     const handleOnChange = (event) => {
         // console.log("On change");
         setText(event.target.value); //Setting the value typed by the user in the textarea
@@ -76,6 +82,8 @@ export default function TextForm(props) {
                 <button className={`btn btn-${props.theme || 'primary'} mx-2 mb-2`} disabled={text.length===0} onClick={generateSlug}>Generate Slug</button>
                 <button className={`btn btn-${props.theme || 'primary'} mx-2 mb-2`} disabled={text.length===0} onClick={handleCopy}>Copy Text</button>
                 <button className={`btn btn-${props.theme || 'primary'} mx-2 mb-2`} disabled={text.length===0} onClick={handleExtraSpaces}>Remove Extra Spaces</button>
+
+                <button className={`btn btn-${props.theme || 'primary'} mx-2 mb-2`} disabled={text.length===0} onClick={convertToPara}>Convert Into Paragraph</button>
             </div>
 
             <div className="container my-3" style={{ color: props.mode === 'dark' ? 'white' : 'black' }}>
