@@ -1,15 +1,15 @@
 
 import React, { useState } from 'react';
 import './App.css';
-// import About from './components/About';
+import About from './components/About';
 import Navbar from './components/Navbar';
 import Alert from './components/Alert';
 import TextForm from './components/TextForm';
-// import {
-//   BrowserRouter as Router,
-//   Routes,
-//   Route
-// } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route
+} from "react-router-dom";
 
 
 
@@ -70,27 +70,26 @@ function App() {
 
   return (
     <>
+     <Router>
       <Navbar title="TextUtils" mode={mode} toggleMode={toggleMode} theme={theme} changeTheme={changeTheme} />
-      <Alert alert={alert} />
       <div className="container my-3">
+      <Alert alert={alert} />
 
-       {/* <Router>
       <Routes>
-       Why use exact path always, because react does partial matching 
+       {/* Why use exact path always, because react does partial matching  */}
         
-        for example support 
-        /users ---> component 1
-        /users/home ---> component 2 
+        {/* for example support  */}
+        {/* /users ---> component 1 */}
+        {/* /users/home ---> component 2  */}
         
-        Partial matching will lead redirection of both to component 1 only
+        {/* Partial matching will lead redirection of both to component 1 only */}
 
           <Route exact path="/about" element={<About/>}/>
           <Route exact path="/" element={<TextForm showAlert={showAlert} theme={theme} heading="Enter the text to analyze below" mode={mode} />}/>
       </Routes>
-      </Router>*/}
-      <TextForm showAlert={showAlert} theme={theme} heading="Enter the text to analyze below" mode={mode} />
 
       </div>
+      </Router>
     </>
   );
 }
