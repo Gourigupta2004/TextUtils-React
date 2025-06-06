@@ -43,7 +43,7 @@ export default function About(props) {
         <div className="accordion-item">
           <h2 className="accordion-header">
             <button
-              className="accordion-button"
+              className={`accordion-button ${props.mode === 'dark' ? 'dark-arrow' : ''}`}
               style={myStyle}
               type="button"
               data-bs-toggle="collapse"
@@ -67,7 +67,7 @@ export default function About(props) {
         <div className="accordion-item">
           <h2 className="accordion-header">
             <button
-              className="accordion-button collapsed"
+              className={`accordion-button collapsed ${props.mode === 'dark' ? 'dark-arrow' : ''}`}
               style={myStyle}
               type="button"
               data-bs-toggle="collapse"
@@ -91,7 +91,7 @@ export default function About(props) {
         <div className="accordion-item">
           <h2 className="accordion-header">
             <button
-              className="accordion-button collapsed"
+              className={`accordion-button collapsed ${props.mode === 'dark' ? 'dark-arrow' : ''}`}
               style={myStyle}
               type="button"
               data-bs-toggle="collapse"
