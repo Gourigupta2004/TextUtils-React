@@ -25,7 +25,7 @@ export default function TextForm(props) {
 
     const generateSlug = () => {
         console.log("Generate Slug was clicked " + text);
-        let newText = text.toLowerCase().replaceAll(" ", "-");
+        let newText = text.trim().toLowerCase().replaceAll(" ", "-");
         setText(newText); //Setting the new text to the state variable
         // This will convert the text to lowercase and replace spaces with hyphens
         props.showAlert("Slug Generated", "success"); //Showing the alert
@@ -61,25 +61,27 @@ export default function TextForm(props) {
     return (
         <>
             <div className='container' style={{ color: props.mode === 'dark' ? 'white' : 'black' }} >
-                <h1>{props.heading}</h1>
+                <h1 className='mb-3'>{props.heading}</h1>
                 <div className="mb-3">
                     <textarea ref={textArearef} className="form-control" value={text} onChange={handleOnChange} style={{ backgroundColor: props.mode === 'dark' ? '#302f2d' : 'white', color: props.mode === 'dark' ? 'white' : 'black' }} id="myBox" rows="8"></textarea>
                 </div>
 
-                <button className={`btn btn-${props.theme || 'primary'} mx-2 mb-2`} onClick={handleUpClick}>Convert To Uppercase</button>
-                <button className={`btn btn-${props.theme || 'primary'} mx-2 mb-2`} onClick={handleLoClick}>Convert To LowerCase</button>
-                <button className={`btn btn-${props.theme || 'primary'} mx-2 mb-2`} onClick={clearText}>Clear Text</button>
-                <button className={`btn btn-${props.theme || 'primary'} mx-2 mb-2`} onClick={generateSlug}>Generate Slug</button>
-                <button className={`btn btn-${props.theme || 'primary'} mx-2 mb-2`} onClick={handleCopy}>Copy Text</button>
-                <button className={`btn btn-${props.theme || 'primary'} mx-2 mb-2`} onClick={handleExtraSpaces}>Remove Extra Spaces</button>
+                <button className={`btn btn-${props.theme || 'primary'} mx-2 mb-2`} disabled={text.length===0} onClick={handleUpClick}>Convert To Uppercase</button>
+                <button className={`btn btn-${props.theme || 'primary'} mx-2 mb-2`} disabled={text.length===0} onClick={handleLoClick}>Convert To LowerCase</button>
+                <button className={`btn btn-${props.theme || 'primary'} mx-2 mb-2`} disabled={text.length===0} onClick={clearText}>Clear Text</button>
+                <button className={`btn btn-${props.theme || 'primary'} mx-2 mb-2`} disabled={text.length===0} onClick={generateSlug}>Generate Slug</button>
+                <button className={`btn btn-${props.theme || 'primary'} mx-2 mb-2`} disabled={text.length===0} onClick={handleCopy}>Copy Text</button>
+                <button className={`btn btn-${props.theme || 'primary'} mx-2 mb-2`} disabled={text.length===0} onClick={handleExtraSpaces}>Remove Extra Spaces</button>
             </div>
 
             <div className="container my-3" style={{ color: props.mode === 'dark' ? 'white' : 'black' }}>
                 <h2>Your text summary</h2>
-                <p>{text.trim() === "" ? "0" : text.trim().split(" ").length} words and {text.trim().length} characters</p>
-                <p>{text.trim() === "" ? "0" : 0.008 * text.trim().split(" ").length} Minutes read</p>
+                {/* .filter((element) => {
+                    return element.length!== 0} ---> can be used here also) */}
+                <p>{text.trim() === "" ? "0" : text.trim().split(/\s+/).length} words and {text.trim().length} characters</p>
+                <p>{text.trim() === "" ? "0" : 0.008 * text.trim().split(/\s+/).length} Minutes read</p>
                 <h2>Preview</h2>
-                <p>{text.trim().length > 0 ? text : "Enter something in the text box above to preview it here"}</p>
+                <p>{text.trim().length > 0 ? text : "Nothing to preview"}</p>
             </div>
         </>
     )

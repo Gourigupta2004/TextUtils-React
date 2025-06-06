@@ -37,7 +37,7 @@ function App() {
       setMode('dark');
       document.body.style.backgroundColor = '#171616';
       showAlert("Dark mode has been enabled", "success");
-      document.title = "TextUtils - Dark Mode"; // Change the title of the page
+      // document.title = "TextUtils - Dark Mode"; // Change the title of the page
 
       // We should not use these things in production, as they ruins the user experience
 
@@ -52,7 +52,7 @@ function App() {
       setMode('light');
       document.body.style.backgroundColor = 'white';
       showAlert("Light mode has been enabled", "success");
-      document.title = "TextUtils - Light Mode"; // Change the title of the page
+      // document.title = "TextUtils - Light Mode"; // Change the title of the page
     }
   }
 
@@ -72,8 +72,8 @@ function App() {
     <>
      <Router>
       <Navbar title="TextUtils" mode={mode} toggleMode={toggleMode} theme={theme} changeTheme={changeTheme} />
-      <div className="container my-3">
       <Alert alert={alert} />
+      <div className="container my-3">
 
       <Routes>
        {/* Why use exact path always, because react does partial matching  */}
@@ -84,7 +84,7 @@ function App() {
         
         {/* Partial matching will lead redirection of both to component 1 only */}
 
-          <Route exact path="/about" element={<About/>}/>
+          <Route exact path="/about" element={<About mode={mode}/>}/>
           <Route exact path="/" element={<TextForm showAlert={showAlert} theme={theme} heading="Enter the text to analyze below" mode={mode} />}/>
       </Routes>
 

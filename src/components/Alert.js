@@ -9,7 +9,7 @@ export default function Alert(props) {
   }
 
   return (
-    <div>
+    <div style={{height : '50px'}}>
       {/* //remeber - We use {} to tell JSX to evaluate JavaScript. */}
       {/* props.alert && (....) - this is a conditional rendering pattern */}
 
