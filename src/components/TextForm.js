@@ -36,6 +36,10 @@ export default function TextForm(props) {
         console.log("You copied the text " + text);
         textArearef.current.select(); //This will select the text in the textarea
         navigator.clipboard.writeText(text); //This will copy the text to the clipboard
+        setTimeout(() => {  
+            document.getSelection().removeAllRanges();
+        }, 200);
+
         props.showAlert("Text Copied", "success"); //Showing the alert
     }
 
