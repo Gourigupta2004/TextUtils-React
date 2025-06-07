@@ -20,7 +20,7 @@ export default function TextForm(props) {
         console.log("Clear Text was clicked " + text);
         let newText = ""; //Converting the text to lowercase
         setText(newText); //Setting the new text to the state variable
-        props.showAlert("Text Cleared", "success"); //Showing the alert
+        props.showAlert("Text Cleared", "success"); 
     }
 
     const generateSlug = () => {
@@ -28,19 +28,19 @@ export default function TextForm(props) {
         let newText = text.trim().toLowerCase().replaceAll(" ", "-");
         setText(newText); //Setting the new text to the state variable
         // This will convert the text to lowercase and replace spaces with hyphens
-        props.showAlert("Slug Generated", "success"); //Showing the alert
-
+        props.showAlert("Slug Generated", "success"); 
     }
 
     const handleCopy = () => {
         console.log("You copied the text " + text);
+        // text.select(); // text is just a string, not a DOM element
         textArearef.current.select(); //This will select the text in the textarea
         navigator.clipboard.writeText(text); //This will copy the text to the clipboard
         setTimeout(() => {  
             document.getSelection().removeAllRanges();
         }, 200);
 
-        props.showAlert("Text Copied", "success"); //Showing the alert
+        props.showAlert("Text Copied", "success"); 
     }
 
     const handleExtraSpaces = () => {

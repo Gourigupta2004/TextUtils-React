@@ -15,11 +15,12 @@ import {
 
 function App() {
 
-  const [mode, setMode] = useState('light') //Whether dark mode is enabled or not
+  const [mode, setMode] = useState('light') 
+  //Whether dark mode is enabled or not
 
-  const [alert, setAlert] = useState(null); // alert is an object
+  const [alert, setAlert] = useState(null); 
 
-  const [theme, setTheme] = useState(null);
+  const [theme, setTheme] = useState(null); 
 
 
   const showAlert = (message, type) => {
@@ -29,7 +30,7 @@ function App() {
     })
     setTimeout(() => {
       setAlert(null);
-    }, 1500); // This will remove the alert after 3 seconds
+    }, 1500);
   }
 
   const toggleMode = () => {
@@ -40,7 +41,6 @@ function App() {
       // document.title = "TextUtils - Dark Mode"; // Change the title of the page
 
       // We should not use these things in production, as they ruins the user experience
-
       // setInterval(() => {
       //   document.title = "TextUtils is Amazing"; // Change the title of the page
       // }, 2000);
@@ -73,21 +73,20 @@ function App() {
      <Router>
       <Navbar title="TextUtils" mode={mode} toggleMode={toggleMode} theme={theme} changeTheme={changeTheme} />
       <Alert alert={alert} />
-      <div className="container my-3">
 
+      <div className="container my-3">
       <Routes>
-       {/* Why use exact path always, because react does partial matching  */}
+      {/* Why use exact path always, because react does partial matching  */}
+
+      {/* for example support  */}
+      {/* /users ---> component 1 */}
+      {/* /users/home ---> component 2*/}
         
-        {/* for example support  */}
-        {/* /users ---> component 1 */}
-        {/* /users/home ---> component 2  */}
-        
-        {/* Partial matching will lead redirection of both to component 1 only */}
+      {/* Partial matching will lead redirection of both to component 1 only */}
 
           <Route exact path="/about" element={<About mode={mode}/>}/>
           <Route exact path="/" element={<TextForm showAlert={showAlert} theme={theme} heading="Enter the text to analyze below" mode={mode} />}/>
       </Routes>
-
       </div>
       </Router>
     </>
